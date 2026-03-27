@@ -1,4 +1,7 @@
-const trustLogos = ["Canva", "Facebook", "Twitter", "Pinterest"];
+const trustLogos = ["Canva", "Facebook", "Twitter", "Pinterest", "Shopify", "Dribbble"];
+
+// Duplicate for seamless infinite loop
+const loopedLogos = [...trustLogos, ...trustLogos];
 
 export default function Hero() {
   return (
@@ -37,16 +40,29 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Trust logos */}
-        <div className="mt-16 flex items-center justify-center gap-8 opacity-40">
-          {trustLogos.map((name) => (
-            <span
-              key={name}
-              className="text-sm font-semibold tracking-wider uppercase text-text-muted"
+        {/* Trust logos — auto scroll */}
+        <div className="mt-16">
+          <p className="text-xs text-text-muted uppercase tracking-widest text-center mb-6 opacity-50">
+            Trusted by teams at
+          </p>
+          <div className="marquee-wrapper overflow-hidden relative">
+            {/* Edge fades */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 z-10 bg-gradient-to-r from-bg-dark to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 z-10 bg-gradient-to-l from-bg-dark to-transparent" />
+            <div
+              className="animate-marquee flex items-center gap-12 w-max"
+              style={{ "--marquee-duration": "18s" } as React.CSSProperties}
             >
-              {name}
-            </span>
-          ))}
+              {loopedLogos.map((name, i) => (
+                <span
+                  key={i}
+                  className="text-sm font-semibold tracking-wider uppercase text-text-muted opacity-40 whitespace-nowrap"
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
