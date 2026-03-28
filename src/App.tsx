@@ -64,6 +64,8 @@ export default function App() {
       <Reviews />
       <hr className="border-white/5 mx-6" />
       <Footer />
+      {/* Bottom blur overlay */}
+      <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-[100px] z-40 bg-gradient-to-t from-bg-dark via-bg-dark/80 to-transparent" />
     </div>
   );
 }

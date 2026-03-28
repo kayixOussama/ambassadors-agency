@@ -18,7 +18,7 @@ export default function Navbar() {
           {links.map((l) => (
             <li key={l}>
               <a
-                href={`#${l.toLowerCase()}`}
+                href={l === "Shop" ? "/shop.html" : `#${l.toLowerCase()}`}
                 className="hover:text-white transition-colors"
               >
                 {l}
@@ -73,7 +73,7 @@ export default function Navbar() {
             {links.map((l) => (
               <li key={l}>
                 <a
-                  href={`#${l.toLowerCase()}`}
+                  href={l === "Shop" ? "/shop.html" : `#${l.toLowerCase()}`}
                   className="hover:text-white transition-colors"
                   onClick={() => setOpen(false)}
                 >
