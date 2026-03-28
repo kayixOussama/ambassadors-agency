@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 px-6 overflow-hidden">
       {/* Gradient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[160px] pointer-events-none animate-glow-sway" />
 
       <div className="relative max-w-4xl mx-auto text-center">
         <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary-light border border-primary/20">

@@ -34,3 +34,14 @@ body {
 .marquee-wrapper:hover .animate-marquee {
   animation-play-state: paused;
 }
+
+/* Purple glow sway */
+@keyframes glow-sway {
+  0%   { transform: translate(-70%, -50%) rotate(-8deg); }
+  50%  { transform: translate(-30%, -50%) rotate(8deg); }
+  100% { transform: translate(-70%, -50%) rotate(-8deg); }
+}
+
+.animate-glow-sway {
+  animation: glow-sway 8s ease-in-out infinite;
+}

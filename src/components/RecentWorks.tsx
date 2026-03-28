@@ -1,7 +1,7 @@
 const projects = [
-  { title: "Oconnecta", tag: "NEW", color: "bg-primary" },
-  { title: "Oconnecta", tag: null, color: "bg-primary-light/20" },
-  { title: "Oconnecta", tag: "REBRANDED", color: "bg-primary/60" },
+  { title: "Iwemart", tag: "NEW", color: "bg-primary", image: "/thumb-Iwemart-brand.jpg" },
+  { title: "Oconnecta", tag: null, color: "bg-primary-light/20", image: "/thumb-oconnecta-brand.png" },
+  { title: "Oconnecta", tag: "REBRANDED", color: "bg-primary/60", image: null },
 ];
 
 // Duplicate for seamless infinite loop
@@ -32,7 +32,14 @@ export default function RecentWorks() {
               key={i}
               className="group relative w-[340px] sm:w-[400px] aspect-[4/3] flex-shrink-0 rounded-2xl overflow-hidden bg-bg-card border border-white/5 hover:border-primary/30 transition-all"
             >
-              <div className={`absolute inset-0 ${p.color} opacity-20`} />
+              {p.image && (
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
+              {!p.image && <div className={`absolute inset-0 ${p.color} opacity-20`} />}
               <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/90 via-bg-dark/20 to-transparent" />
 
               {p.tag && (

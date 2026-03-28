@@ -27,6 +27,9 @@ export default function HowWeWork() {
           <h2 className="text-3xl md:text-4xl font-bold">
             How We <span className="text-primary-light">Work</span>
           </h2>
+          <p className="mt-4 text-lg text-text-muted max-w-xl mx-auto leading-relaxed">
+            We Simplify The Journey From Design To Launch.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
