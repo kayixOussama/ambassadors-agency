@@ -35,6 +35,12 @@ body {
   animation-play-state: paused;
 }
 
+/* Custom cursor dot */
+.cursor-dot {
+  transition: opacity 0.3s;
+  will-change: transform;
+}
+
 /* Purple glow sway */
 @keyframes glow-sway {
   0%   { transform: translate(-70%, -50%) rotate(-8deg); }

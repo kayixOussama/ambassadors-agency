@@ -1,8 +1,50 @@
+import { useEffect, useRef, useState } from "react";
+
 const stats = [
-  { value: "100+", label: "Projects Printed" },
-  { value: "57+", label: "Brands Created" },
-  { value: "98%", label: "Client Satisfaction" },
+  { value: 100, suffix: "+", label: "Projects Printed" },
+  { value: 57, suffix: "+", label: "Brands Created" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
+
+function CountUp({ target, suffix }: { target: number; suffix: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLParagraphElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 2000;
+          const start = performance.now();
+
+          const step = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * target));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+
+          requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <p ref={ref} className="text-5xl md:text-6xl font-extrabold text-primary-light">
+      {count}{suffix}
+    </p>
+  );
+}
 
 export default function Results() {
   return (
@@ -21,9 +63,7 @@ export default function Results() {
               key={s.label}
               className="p-8 rounded-2xl bg-bg-card border border-white/5 hover:border-primary/30 transition-colors"
             >
-              <p className="text-5xl md:text-6xl font-extrabold text-primary-light">
-                {s.value}
-              </p>
+              <CountUp target={s.value} suffix={s.suffix} />
               <p className="mt-3 text-text-muted text-sm tracking-wide uppercase">
                 {s.label}
               </p>
