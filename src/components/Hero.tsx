@@ -43,7 +43,7 @@ export default function Hero() {
         {/* Trust logos — auto scroll */}
         <div className="mt-16">
           <p className="text-xs text-text-muted uppercase tracking-widest text-center mb-6 opacity-50">
-            
+            Trusted by growing brands
           </p>
           <div className="marquee-wrapper overflow-hidden relative">
             {/* Edge fades */}

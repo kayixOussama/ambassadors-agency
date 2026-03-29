@@ -132,11 +132,60 @@ img,svg{display:block}
 .footer-wa svg{width:18px;height:18px;fill:var(--whatsapp)}
 
 /* responsive */
-@media(max-width:600px){
-  .hero{padding:120px 16px 40px}
-  .grid{padding:0 16px 40px}
-  .filter-bar{padding:0 16px}
+@media(max-width:1024px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+  .nav-inner{padding:14px 20px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta,.shop-pill{display:none}
+  .burger-btn{display:block}
+  .hero{padding:120px 20px 44px}
+  .hero h1{font-size:clamp(1.6rem,6vw,2.4rem)}
+  .hero p{font-size:.9rem}
+  .filter-bar{padding:0 16px;gap:8px;justify-content:center}
+  .filter-btn{padding:7px 14px;font-size:.72rem}
+  .sort-wrap{margin-left:0;width:100%;margin-top:4px}
+  .sort-wrap select{width:100%}
+  .grid{padding:0 16px 48px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+  .card-img{height:170px}
+  .card-body{padding:14px}
   .footer{padding:28px 16px;flex-direction:column;text-align:center}
+  .toast{left:16px;right:16px;transform:translateX(0) translateY(80px);width:auto;font-size:.8rem;padding:12px 16px}
+  .toast.show{transform:translateX(0) translateY(0)}
+}
+@media(max-width:480px){
+  .hero{padding:110px 14px 36px}
+  .hero-eyebrow{font-size:.65rem;padding:6px 14px}
+  .hero h1{font-size:clamp(1.4rem,7vw,1.9rem)}
+  .hero p{font-size:.82rem;margin-top:12px}
+  .filter-bar{padding:0 12px}
+  .filter-btn{padding:6px 10px;font-size:.68rem}
+  .grid{padding:0 12px 40px;grid-template-columns:1fr;gap:14px}
+  .card-img{height:160px}
+  .card-img svg{width:56px;height:56px}
+  .card-body{padding:12px}
+  .card-body h3{font-size:.9rem}
+  .sizes{gap:4px}
+  .size-pill{padding:5px 9px;font-size:.65rem}
+  .qty-btn{width:28px;height:28px;font-size:.85rem}
+  .qty-val{font-size:.85rem;min-width:32px}
+  .price-total{font-size:1.1rem}
+  .wa-btn{padding:10px;font-size:.8rem}
+  .info-btn{width:38px}
+  .nav-inner{padding:12px 14px}
+  .logo{font-size:1.2rem}
+  .mobile-menu{padding:14px 14px 20px}
+  .footer{padding:24px 12px;gap:12px}
+  .footer-wa{padding:9px 18px;font-size:.8rem}
+  .toast{bottom:16px;left:10px;right:10px;border-radius:10px}
+}
+@media(max-width:360px){
+  .hero h1{font-size:1.3rem}
+  .hero p{font-size:.78rem}
+  .grid{padding:0 10px 36px;gap:12px}
+  .card-body{padding:10px}
+  .size-pill{padding:4px 8px;font-size:.6rem}
+  .filter-btn{padding:5px 8px;font-size:.62rem}
 }
 </style>
 </head>

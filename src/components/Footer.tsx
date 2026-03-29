@@ -1,4 +1,10 @@
-const pageLinks = ["Home", "About", "Portfolio", "Services", "Contact"];
+const pageLinks = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
+];
 
 const socials = [
   { name: "Twitter (X)", href: "#" },
@@ -30,12 +36,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {pageLinks.map((l) => (
-                <li key={l}>
+                <li key={l.label}>
                   <a
-                    href={`#${l.toLowerCase()}`}
+                    href={l.href}
                     className="text-sm text-text-muted hover:text-white transition-colors"
                   >
-                    {l}
+                    {l.label}
                   </a>
                 </li>
               ))}
