@@ -203,7 +203,7 @@ img,svg{display:block}
     </ul>
     <div class="shop-pill">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      Shop <span class="badge">6</span>
+      Shop <span class="badge">7</span>
     </div>
     <a href="/#contact" class="nav-cta">Get Started</a>
     <button class="burger-btn" aria-label="Toggle menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
@@ -224,16 +224,17 @@ img,svg{display:block}
   <div class="hero-glow"></div>
   <div class="hero-eyebrow"><span class="dot"></span> Premium packaging</div>
   <h1>Boxes that make your brand <span class="hl">unforgettable</span></h1>
-  <p>Food-grade, print-ready packaging for bakeries, restaurants &amp; brands. Minimum 50 pcs. Order directly via WhatsApp.</p>
+  <p>Food-grade, print-ready packaging for bakeries, restaurants &amp; brands. Order directly via WhatsApp.</p>
 </section>
 
 <!-- ═══ FILTERS ═══ -->
 <div class="filter-bar">
   <button class="filter-btn active" data-filter="all">All products</button>
+  <button class="filter-btn" data-filter="bread">Paper bread</button>
+  <button class="filter-btn" data-filter="envelope">Paper bags</button>
+  <button class="filter-btn" data-filter="shopping">Shopping bags</button>
   <button class="filter-btn" data-filter="cake">Cake boxes</button>
-  <button class="filter-btn" data-filter="burger">Burger boxes</button>
-  <button class="filter-btn" data-filter="sweet">Sweet boxes</button>
-  <button class="filter-btn" data-filter="custom">Custom print</button>
+  <button class="filter-btn" data-filter="pizza">Pizza boxes</button>
   <div class="sort-wrap">
     <select id="sortSelect">
       <option value="featured">Featured</option>
@@ -255,7 +256,7 @@ img,svg{display:block}
     <div class="fl-logo">Ambass<span>adors</span></div>
     <p>All boxes are food-grade certified. Delivery across Oman.</p>
   </div>
-  <a href="https://wa.me/96812345678" target="_blank" rel="noopener" class="footer-wa">
+  <a href="https://wa.me/250781568330" target="_blank" rel="noopener" class="footer-wa">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.008a9.87 9.87 0 01-5.03-1.378l-.36-.214-3.742.982.999-3.648-.235-.374A9.86 9.86 0 012.13 12.06c.002-5.45 4.437-9.884 9.889-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884l-.065-.001zM20.52 3.449C18.24 1.245 15.24 0 12.05 0 5.463 0 .104 5.334.101 11.893c-.001 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.234-6.165-3.479-8.449z"/></svg>
     Chat on WhatsApp
   </a>
@@ -263,61 +264,67 @@ img,svg{display:block}
 
 <script>
 // ─── DATA ───
-const PHONE = '96812345678';
+const PHONE = '250781568330';
 
 const products = [
   {
-    id:'cake', name:'Premium Cake Box', badge:'new', cat:'cake',
-    desc:'Elegant food-grade cake box with window lid.',
-    sizes:['10 cm','15 cm','20 cm','Custom'],
-    prices:[1.20,1.80,2.50,3.20], step:10, min:50,
-    icon:'cake'
+    id:'breadwax', name:'Paper Bread Bag (Wax)', badge:'new', cat:'bread',
+    desc:'Wax paper bread bag – grease-proof & food-safe. Price per 1000 pcs.',
+    sizes:['Small','Medium','Large'],
+    prices:[58000,58000,58000], step:1000, min:1000,
+    unit:'pcs', icon:'paperbread'
   },
   {
-    id:'burger', name:'Burger Box', badge:'popular', cat:'burger',
-    desc:'Sturdy clamshell box for burgers & sandwiches.',
-    sizes:['Small','Medium','Large','XL'],
-    prices:[0.85,1.10,1.45,1.90], step:50, min:100,
-    icon:'burger'
+    id:'breadcoated', name:'Paper Bread Bag (Coated)', badge:'popular', cat:'bread',
+    desc:'Coated paper bread bag – premium finish & food-safe. Price per 1000 pcs.',
+    sizes:['Small','Medium','Large'],
+    prices:[95000,95000,95000], step:1000, min:1000,
+    unit:'pcs', icon:'paperbread'
   },
   {
-    id:'cupcake', name:'Cupcake Box', badge:'new', cat:'cake sweet',
-    desc:'Multi-cavity cupcake carrier with secure inserts.',
-    sizes:['1-cavity','2-cavity','4-cavity','6-cavity'],
-    prices:[0.95,1.40,2.10,2.90], step:10, min:50,
-    icon:'cupcake'
+    id:'envelope', name:'Paper Bag (Envelope)', badge:'new', cat:'envelope',
+    desc:'Paper envelope bags – available branded & non-branded. Price per kg.',
+    sizes:['1–5 Branded','1–5 Plain','10–25 Branded','10–25 Plain'],
+    prices:[2700,2000,2500,2100], step:1, min:1,
+    unit:'kg', icon:'paperbag'
   },
   {
-    id:'pizza', name:'Pizza Box', badge:'popular', cat:'burger',
-    desc:'Classic corrugated pizza box – grease resistant.',
-    sizes:['8"','10"','12"','14"'],
-    prices:[0.70,0.95,1.20,1.60], step:10, min:50,
-    icon:'pizza'
+    id:'shopwhite', name:'Shopping Bag (White)', badge:'popular', cat:'shopping',
+    desc:'Branded white paper shopping bag with handles.',
+    sizes:['Medium','Large'],
+    prices:[1000,1500], step:50, min:50,
+    unit:'pcs', icon:'shoppingbag'
   },
   {
-    id:'macaron', name:'Macaron Box', badge:'new', cat:'sweet cake',
-    desc:'Luxe slide-out tray for macarons & petit fours.',
-    sizes:['3-pc','6-pc','12-pc','24-pc'],
-    prices:[1.50,2.20,3.10,4.50], step:10, min:50,
-    icon:'macaron'
+    id:'shopbrown', name:'Shopping Bag (Brown)', badge:'new', cat:'shopping',
+    desc:'Branded brown kraft paper shopping bag with handles.',
+    sizes:['Medium','Large'],
+    prices:[350,600], step:50, min:50,
+    unit:'pcs', icon:'shoppingbag'
   },
   {
-    id:'custom', name:'Custom Branded Box', badge:'custom', cat:'custom',
-    desc:'Fully bespoke box with your brand artwork.',
-    sizes:['1-color','Full color','Foil stamp','Emboss'],
-    prices:[2.50,3.80,5.20,6.50], step:50, min:200,
-    icon:'custom'
+    id:'cake', name:'Cake Box', badge:'popular', cat:'cake',
+    desc:'Food-grade cake box – sturdy & elegant. Includes burger box option.',
+    sizes:['5×5 (Burger)','8×8','10×10','12×12'],
+    prices:[320,535,700,750], step:50, min:50,
+    unit:'pcs', icon:'cake'
+  },
+  {
+    id:'pizza', name:'Pizza Box', badge:'new', cat:'pizza',
+    desc:'Corrugated pizza box – grease resistant & stackable.',
+    sizes:['Medium','Large'],
+    prices:[600,800], step:50, min:50,
+    unit:'pcs', icon:'pizza'
   }
 ];
 
 // ─── SVG ICONS ───
 const icons = {
   cake:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="34" width="48" height="24" rx="4"/><path d="M12 42h48"/><path d="M20 34v-6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v6"/><circle cx="28" cy="18" r="3"/><circle cx="36" cy="14" r="3"/><circle cx="44" cy="18" r="3"/></svg>`,
-  burger:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 38h44"/><path d="M16 32c0-8 8-16 20-16s20 8 20 16"/><rect x="14" y="38" width="44" height="8" rx="2"/><path d="M16 50c0 4 8 6 20 6s20-2 20-6"/><line x1="14" y1="46" x2="14" y2="50"/><line x1="58" y1="46" x2="58" y2="50"/></svg>`,
-  cupcake:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 40l4 20h20l4-20"/><ellipse cx="36" cy="34" rx="18" ry="8"/><path d="M26 28c0-6 4-12 10-12s10 6 10 12"/><circle cx="32" cy="24" r="2"/><circle cx="40" cy="22" r="2"/></svg>`,
   pizza:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M36 8L10 58h52L36 8z"/><circle cx="30" cy="40" r="3"/><circle cx="42" cy="44" r="3"/><circle cx="36" cy="28" r="3"/><line x1="10" y1="58" x2="62" y2="58"/></svg>`,
-  macaron:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="36" cy="28" rx="16" ry="8"/><ellipse cx="36" cy="44" rx="16" ry="8"/><line x1="20" y1="28" x2="20" y2="44"/><line x1="52" y1="28" x2="52" y2="44"/><path d="M20 36h32" stroke-dasharray="3 3"/></svg>`,
-  custom:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="20" width="44" height="32" rx="4"/><path d="M14 28h44"/><path d="M36 28v24"/><circle cx="36" cy="16" r="4"/><path d="M24 16h8"/><path d="M40 16h8"/></svg>`
+  paperbread:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16h32v44H20z"/><path d="M20 16c0-4 7-6 16-6s16 2 16 6"/><path d="M24 30h24"/><path d="M24 38h24"/><path d="M24 46h16"/><path d="M28 16v-3"/><path d="M36 16v-5"/><path d="M44 16v-3"/></svg>`,
+  paperbag:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 24h40v34H16z"/><path d="M16 24l4-10h32l4 10"/><path d="M28 24v-4a8 8 0 0 1 16 0v4"/><path d="M24 34c0 3 5 5 12 5s12-2 12-5"/></svg>`,
+  shoppingbag:`<svg viewBox="0 0 72 72" fill="none" stroke="#6C3FF3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="22" width="48" height="38" rx="4"/><path d="M26 22v-6a10 10 0 0 1 20 0v6"/><path d="M12 30h48"/><circle cx="30" cy="42" r="2"/><circle cx="42" cy="42" r="2"/></svg>`
 };
 
 // ─── STATE (per card) ───
@@ -330,7 +337,9 @@ function renderGrid() {
   products.forEach((p, i) => {
     const s = state[i];
     const unitPrice = p.prices[s.sizeIdx];
-    const total = (s.qty * unitPrice).toFixed(2);
+    const total = fmtPrice(s.qty * unitPrice);
+    const unitLabel = p.unit === 'kg' ? 'kg' : 'pc';
+    const stepLabel = p.unit === 'kg' ? 'kg' : 'pcs';
 
     const card = document.createElement('div');
     card.className = 'product-card';
@@ -345,7 +354,7 @@ function renderGrid() {
       <div class="card-img">
         ${icons[p.icon]}
         <span class="card-badge ${badgeClass}">${p.badge}</span>
-        <span class="min-label">Min ${p.min} pcs</span>
+        <span class="min-label">Min ${p.min} ${stepLabel}</span>
       </div>
       <div class="card-body">
         <h3>${p.name}</h3>
@@ -357,11 +366,11 @@ function renderGrid() {
           <button class="qty-btn" data-ci="${i}" data-dir="-1">−</button>
           <span class="qty-val" id="qty-${i}">${s.qty}</span>
           <button class="qty-btn" data-ci="${i}" data-dir="1">+</button>
-          <span class="qty-step">× ${p.step} pcs</span>
+          <span class="qty-step">× ${p.step} ${stepLabel}</span>
         </div>
         <div class="price-block">
-          <span class="price-total" id="total-${i}">OMR ${total}</span>
-          <span class="price-unit" id="unit-${i}">OMR ${unitPrice.toFixed(2)} / pc</span>
+          <span class="price-total" id="total-${i}">${total} RWF</span>
+          <span class="price-unit" id="unit-${i}">${fmtPrice(unitPrice)} RWF / ${unitLabel}</span>
         </div>
         <div class="actions">
           <button class="wa-btn" data-ci="${i}">
@@ -379,15 +388,21 @@ function renderGrid() {
   applyFilter();
 }
 
+// ─── FORMAT PRICE ───
+function fmtPrice(n) {
+  return n.toLocaleString('en-RW');
+}
+
 // ─── UPDATE PRICE ───
 function updateCard(ci) {
   const s = state[ci];
   const p = products[ci];
   const unitPrice = p.prices[s.sizeIdx];
-  const total = (s.qty * unitPrice).toFixed(2);
+  const total = fmtPrice(s.qty * unitPrice);
+  const unitLabel = p.unit === 'kg' ? 'kg' : 'pc';
   document.getElementById('qty-' + ci).textContent = s.qty;
-  document.getElementById('total-' + ci).textContent = 'OMR ' + total;
-  document.getElementById('unit-' + ci).textContent = 'OMR ' + unitPrice.toFixed(2) + ' / pc';
+  document.getElementById('total-' + ci).textContent = total + ' RWF';
+  document.getElementById('unit-' + ci).textContent = fmtPrice(unitPrice) + ' RWF / ' + unitLabel;
 }
 
 // ─── EVENTS (delegated) ───
@@ -427,16 +442,18 @@ document.getElementById('productGrid').addEventListener('click', function(e) {
     const p = products[ci];
     const s = state[ci];
     const unitPrice = p.prices[s.sizeIdx];
-    const total = (s.qty * unitPrice).toFixed(2);
+    const total = fmtPrice(s.qty * unitPrice);
+    const unitLabel = p.unit === 'kg' ? 'kg' : 'pc';
+    const qtyLabel = p.unit === 'kg' ? 'kg' : 'pcs';
     const msg = `Hello Ambassadors!
 
 I would like to order:
 
   Product: ${p.name}
   Option: ${p.sizes[s.sizeIdx]}
-  Quantity: ${s.qty} pcs
-  Unit price: OMR ${unitPrice.toFixed(2)} / pc
-  Total: OMR ${total}
+  Quantity: ${s.qty} ${qtyLabel}
+  Unit price: ${fmtPrice(unitPrice)} RWF / ${unitLabel}
+  Total: ${total} RWF
 
 Please confirm availability and delivery details. Thank you!`;
     window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
