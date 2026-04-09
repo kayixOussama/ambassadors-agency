@@ -8,10 +8,40 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-bg-dark/80 backdrop-blur-md border-b border-white/5">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <a href="#" className="text-2xl font-bold tracking-tight text-white">
-          Ambassadors<span className="text-primary">.</span>
-        </a>
+        {/* Left: burger + logo */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-white"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {open ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+          <a href="#" className="text-2xl font-bold tracking-tight text-white">
+            Ambassadors<span className="text-primary">.</span>
+          </a>
+        </div>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8 text-sm text-text-muted">
@@ -27,19 +57,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
+        {/* Mobile shop icon */}
         <a
-          href="#contact"
-          className="hidden md:inline-block px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary-light transition-colors"
-        >
-          Get Started
-        </a>
-
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-white"
-          aria-label="Toggle menu"
+          href="/shop.html"
+          className="md:hidden text-white hover:text-primary transition-colors"
+          aria-label="Shop"
         >
           <svg
             className="w-6 h-6"
@@ -47,23 +69,22 @@ export default function Navbar() {
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            {open ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
           </svg>
-        </button>
+        </a>
+
+        {/* CTA */}
+        <a
+          href="#contact"
+          className="hidden md:inline-block px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-primary-light transition-colors"
+        >
+          Get Started
+        </a>
       </div>
 
       {/* Mobile menu */}
