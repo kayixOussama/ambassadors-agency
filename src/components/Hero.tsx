@@ -1,6 +1,7 @@
 const trustLogos = [
   { src: "/logos/nigerian-rs-01.svg", alt: "Nigerian Restaurant" },
   { src: "/logos/nibam.svg", alt: "Nibam" },
+  { src: "/logos/paka.svg", alt: "Paka" },
 ];
 
 // Duplicate for seamless infinite loop
@@ -8,7 +9,7 @@ const loopedLogos = [...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos,
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-32 px-6 overflow-hidden">
+    <section className="relative pt-32 pb-[60px] md:pt-44 md:pb-[108px] px-6 overflow-hidden">
       {/* Gradient glow */}
       <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[160px] pointer-events-none animate-glow-sway" />
 
@@ -46,7 +47,7 @@ export default function Hero() {
         {/* Trust logos — auto scroll */}
         <div className="mt-16">
           <p className="text-xs text-text-muted uppercase tracking-widest text-center mb-6 opacity-50">
-            Trusted by growing brands
+            
           </p>
           <div className="marquee-wrapper overflow-hidden relative">
             {/* Edge fades */}
@@ -61,7 +62,9 @@ export default function Hero() {
                   key={i}
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-[62px] w-auto opacity-50 brightness-0 invert opacity-50 hover:opacity-70 transition-all duration-300"
+                  className={`h-[62px] w-auto hover:opacity-70 transition-all duration-300 ${
+                    logo.alt === "Paka" ? "opacity-50" : "opacity-50 brightness-0 invert"
+                  }`}
                 />
               ))}
             </div>
