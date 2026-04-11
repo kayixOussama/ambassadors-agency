@@ -1,7 +1,10 @@
-const trustLogos = ["Canva", "Facebook", "Twitter", "Pinterest", "Shopify", "Dribbble"];
+const trustLogos = [
+  { src: "/logos/nigerian-rs-01.svg", alt: "Nigerian Restaurant" },
+  { src: "/logos/nibam.svg", alt: "Nibam" },
+];
 
 // Duplicate for seamless infinite loop
-const loopedLogos = [...trustLogos, ...trustLogos];
+const loopedLogos = [...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos];
 
 export default function Hero() {
   return (
@@ -53,13 +56,13 @@ export default function Hero() {
               className="animate-marquee flex items-center gap-12 w-max"
               style={{ "--marquee-duration": "18s" } as React.CSSProperties}
             >
-              {loopedLogos.map((name, i) => (
-                <span
+              {loopedLogos.map((logo, i) => (
+                <img
                   key={i}
-                  className="text-sm font-semibold tracking-wider uppercase text-text-muted opacity-40 whitespace-nowrap"
-                >
-                  {name}
-                </span>
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-[62px] w-auto opacity-50 brightness-0 invert opacity-50 hover:opacity-70 transition-all duration-300"
+                />
               ))}
             </div>
           </div>
