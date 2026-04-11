@@ -44,3 +44,10 @@ jobs:
           region: eu-north-1
           version_label: ${{ github.sha }}
           deployment_package: deploy.zip
+
+      - name: Invalidate CloudFront cache
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: eu-north-1
+        run: aws cloudfront create-invalidation --distribution-id E3TW79TH7UE02W --paths "/*"
