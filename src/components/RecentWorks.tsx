@@ -9,7 +9,7 @@ const looped = [...projects, ...projects];
 
 export default function RecentWorks() {
   return (
-    <section id="projects" className="py-20 md:py-28">
+    <section id="projects" className="py-12 md:py-16">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-14">
           <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary-light border border-primary/20">

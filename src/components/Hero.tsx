@@ -9,7 +9,7 @@ const loopedLogos = [...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos,
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-[60px] md:pt-44 md:pb-[108px] px-6 overflow-hidden">
+    <section className="relative pt-32 pb-12 md:pt-44 md:pb-16 px-6 overflow-hidden">
       {/* Gradient glow */}
       <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] rounded-full bg-primary/20 blur-[160px] pointer-events-none animate-glow-sway" />
 

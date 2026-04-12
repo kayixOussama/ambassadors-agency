@@ -48,21 +48,13 @@ export default function App() {
       />
       <Navbar />
       <Hero />
-      <hr className="border-white/5 mx-6" />
       <About />
-      <hr className="border-white/5 mx-6" />
       <Results />
-      <hr className="border-white/5 mx-6" />
       <RecentWorks />
-      <hr className="border-white/5 mx-6" />
       <HowWeWork />
-      <hr className="border-white/5 mx-6" />
       <Features />
-      <hr className="border-white/5 mx-6" />
       <Services />
-      <hr className="border-white/5 mx-6" />
       <Reviews />
-      <hr className="border-white/5 mx-6" />
       <Footer />
       {/* Bottom blur overlay */}
       <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-[100px] z-40 bg-gradient-to-t from-bg-dark via-bg-dark/80 to-transparent" />
