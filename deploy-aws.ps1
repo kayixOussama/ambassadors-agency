@@ -32,15 +32,32 @@ aws s3api put-public-access-block --bucket $BucketName --public-access-block-con
 # ── 3. Check if CloudFront distribution already exists ────
 Write-Host "Checking for existing CloudFront distribution..." -ForegroundColor Cyan
 $existingDistId = $null
-$distributions = aws cloudfront list-distributions --query "DistributionList.Items[?Origins.Items[0].DomainName=='$BucketName.s3.$Region.amazonaws.com'].Id" --output text 2>$null
-if ($distributions -and $distributions -ne "None") {
-    $existingDistId = $distributions.Trim()
+$allDists = aws cloudfront list-distributions --output json 2>$null | ConvertFrom-Json
+foreach ($d in $allDists.DistributionList.Items) {
+    foreach ($o in $d.Origins.Items) {
+        if ($o.DomainName -like "$BucketName.s3*") {
+            $existingDistId = $d.Id
+            break
+        }
+    }
+    if ($existingDistId) { break }
 }
 
 if (-not $existingDistId) {
-    # ── 4. Create Origin Access Control ───────────────────
-    Write-Host "Creating Origin Access Control..." -ForegroundColor Cyan
-    $oacConfig = @"
+    # ── 4. Create or reuse Origin Access Control ──────────
+    Write-Host "Looking for existing Origin Access Control..." -ForegroundColor Cyan
+    $oacId = $null
+    $oacList = aws cloudfront list-origin-access-controls --output json 2>$null | ConvertFrom-Json
+    foreach ($oac in $oacList.OriginAccessControlList.Items) {
+        if ($oac.Name -eq "$BucketName-oac") {
+            $oacId = $oac.Id
+            Write-Host "  Reusing existing OAC: $oacId" -ForegroundColor Gray
+            break
+        }
+    }
+    if (-not $oacId) {
+        Write-Host "Creating Origin Access Control..." -ForegroundColor Cyan
+        $oacConfig = @"
 {
     "Name": "$BucketName-oac",
     "Description": "OAC for $BucketName",
@@ -49,11 +66,12 @@ if (-not $existingDistId) {
     "OriginAccessControlOriginType": "s3"
 }
 "@
-    [System.IO.File]::WriteAllText("$PWD\oac-config.json", $oacConfig)
-    $oacResult = aws cloudfront create-origin-access-control --origin-access-control-config file://oac-config.json --output json | ConvertFrom-Json
-    $oacId = $oacResult.OriginAccessControl.Id
-    Remove-Item "oac-config.json"
-    Write-Host "  OAC ID: $oacId" -ForegroundColor Gray
+        [System.IO.File]::WriteAllText("$PWD\oac-config.json", $oacConfig)
+        $oacResult = aws cloudfront create-origin-access-control --origin-access-control-config file://oac-config.json --output json | ConvertFrom-Json
+        $oacId = $oacResult.OriginAccessControl.Id
+        Remove-Item "oac-config.json"
+        Write-Host "  OAC ID: $oacId" -ForegroundColor Gray
+    }
 
     # ── 5. Create CloudFront distribution ─────────────────
     Write-Host "Creating CloudFront distribution (this takes a few minutes)..." -ForegroundColor Cyan
