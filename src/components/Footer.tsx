@@ -20,8 +20,8 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <a href="#" className="text-2xl font-bold tracking-tight text-white">
-              Ambassadors<span className="text-primary">.</span>
+            <a href="#" className="inline-flex items-center" aria-label="Ambassadors home">
+              <img src="/logos/amb-logo1.png" alt="Ambassadors logo" className="h-8 w-auto" />
             </a>
             <p className="mt-4 text-text-muted text-sm leading-relaxed max-w-xs">
               Where great brands come to life. Premium branding, design, and

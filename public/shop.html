@@ -32,8 +32,8 @@ img,svg{display:block}
 /* ─── NAV ─── */
 .nav{position:fixed;top:0;left:0;width:100%;z-index:100;border-bottom:.5px solid var(--border);background:rgba(7,5,15,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
-.logo{font-family:var(--font-display);font-weight:800;font-size:1.4rem;color:#fff}
-.logo span{color:var(--accent-light)}
+.logo{display:flex;align-items:center}
+.logo img{height:34px;width:auto}
 .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
 .nav-links a{font-size:.875rem;color:var(--text-muted);transition:color .2s}
 .nav-links a:hover,.nav-links a.active{color:#fff}
@@ -124,8 +124,8 @@ img,svg{display:block}
 
 /* ─── FOOTER ─── */
 .footer{border-top:1px solid var(--border);padding:36px 24px;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
-.footer-left .fl-logo{font-family:var(--font-display);font-weight:800;font-size:1.1rem;margin-bottom:4px}
-.footer-left .fl-logo span{color:var(--accent-light)}
+.footer-left .fl-logo{margin-bottom:4px}
+.footer-left .fl-logo img{height:28px;width:auto}
 .footer-left p{font-size:.75rem;color:var(--text-muted)}
 .footer-wa{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:999px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:var(--whatsapp);font-size:.85rem;font-weight:500;transition:background .2s}
 .footer-wa:hover{background:rgba(37,211,102,.2)}
@@ -173,7 +173,7 @@ img,svg{display:block}
   .wa-btn{padding:10px;font-size:.8rem}
   .info-btn{width:38px}
   .nav-inner{padding:12px 14px}
-  .logo{font-size:1.2rem}
+  .logo img{height:28px}
   .mobile-menu{padding:14px 14px 20px}
   .footer{padding:24px 12px;gap:12px}
   .footer-wa{padding:9px 18px;font-size:.8rem}
@@ -194,7 +194,7 @@ img,svg{display:block}
 <!-- ═══ NAV ═══ -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/" class="logo">Ambass<span>adors</span></a>
+    <a href="/" class="logo"><img src="logos/amb-logo1.png" alt="Ambassadors logo"></a>
     <ul class="nav-links">
       <li><a href="/#projects">Projects</a></li>
       <li><a href="/#services">Services</a></li>
@@ -254,7 +254,7 @@ img,svg{display:block}
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div class="footer-left">
-    <div class="fl-logo">Ambass<span>adors</span></div>
+    <div class="fl-logo"><img src="logos/amb-logo1.png" alt="Ambassadors logo"></div>
     <p>All boxes are food-grade certified. Delivery across Oman.</p>
   </div>
   <a href="https://wa.me/250781568330" target="_blank" rel="noopener" class="footer-wa">

@@ -38,8 +38,8 @@ export default function Navbar() {
               )}
             </svg>
           </button>
-          <a href="#" className="text-2xl font-bold tracking-tight text-white">
-            Ambassadors<span className="text-primary">.</span>
+          <a href="#" className="inline-flex items-center" aria-label="Ambassadors home">
+            <img src="/logos/amb-logo1.png" alt="Ambassadors logo" className="h-8 w-auto" />
           </a>
         </div>
 
