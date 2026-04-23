@@ -267,7 +267,7 @@ img,svg{display:block}
 // ─── DATA ───
 const PHONE = '250781568330';
 
-const products = [
+const defaultProducts = [
   {
     id:'breadwax', name:'Paper Bread (Wax)', badge:'new', cat:'bread',
     desc:'Wax paper bread bag – grease-proof & food-safe. Price per 1000 pcs.',
@@ -336,7 +336,8 @@ const icons = {
 };
 
 // ─── STATE (per card) ───
-const state = products.map(p => ({ sizeIdx: 0, qty: p.min }));
+let products = [];
+let state = [];
 
 // ─── RENDER ───
 function renderGrid() {
@@ -516,8 +517,42 @@ function showToast(productName) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
 }
 
+// ─── SECRET ADMIN TRIGGER (5 logo clicks) ───
+let logoClicks = 0;
+let lastLogoClick = 0;
+const logoEl = document.querySelector('.logo');
+if (logoEl) {
+  logoEl.addEventListener('click', function (e) {
+    e.preventDefault();
+    const now = Date.now();
+    if (now - lastLogoClick > 2000) {
+      logoClicks = 0;
+    }
+    logoClicks += 1;
+    lastLogoClick = now;
+    if (logoClicks >= 5) {
+      logoClicks = 0;
+      window.location.href = '/admin/login';
+    }
+  });
+}
+
+async function initProducts() {
+  try {
+    const response = await fetch('/api/products', { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error('Failed to load product API');
+    const apiProducts = await response.json();
+    products = Array.isArray(apiProducts) && apiProducts.length ? apiProducts : defaultProducts;
+  } catch {
+    products = defaultProducts;
+  }
+
+  state = products.map(p => ({ sizeIdx: 0, qty: p.min }));
+  renderGrid();
+}
+
 // ─── INIT ───
-renderGrid();
+initProducts();
 </script>
 </body>
 </html>

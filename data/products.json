@@ -1,0 +1,180 @@
+[
+  {
+    "id": "breadwax",
+    "name": "Paper Bread (Wax)",
+    "badge": "new",
+    "cat": "bread",
+    "desc": "Wax paper bread bag - grease-proof & food-safe. Price per 1000 pcs.",
+    "sizes": [
+      "Small",
+      "Medium",
+      "Large"
+    ],
+    "prices": [
+      58,
+      58,
+      58
+    ],
+    "step": 1000,
+    "min": 1000,
+    "unit": "pcs",
+    "icon": "paperbread",
+    "image": "images/paper-bread-wax.png"
+  },
+  {
+    "id": "breadcoated",
+    "name": "Coated Paper",
+    "badge": "popular",
+    "cat": "bread",
+    "desc": "Coated paper bread bag - premium finish & food-safe. Price per 1000 pcs.",
+    "sizes": [
+      "Small",
+      "Medium",
+      "Large"
+    ],
+    "prices": [
+      95,
+      95,
+      95
+    ],
+    "step": 1000,
+    "min": 1000,
+    "unit": "pcs",
+    "icon": "paperbread",
+    "image": "images/Coated-paper.png"
+  },
+  {
+    "id": "envelope",
+    "name": "Paper Bag (Envelope)",
+    "badge": "new",
+    "cat": "envelope",
+    "desc": "Paper envelope bags - available branded & non-branded. Price per kg.",
+    "sizes": [
+      "1-5 Branded",
+      "1-5 Plain",
+      "10-25 Branded",
+      "10-25 Plain"
+    ],
+    "prices": [
+      2700,
+      2000,
+      2500,
+      2100
+    ],
+    "step": 1,
+    "min": 1,
+    "unit": "kg",
+    "icon": "paperbag",
+    "image": "images/Paper-bag.png"
+  },
+  {
+    "id": "shopwhite",
+    "name": "Shopping Bag (White)",
+    "badge": "popular",
+    "cat": "shopping",
+    "desc": "Branded white paper shopping bag with handles.",
+    "sizes": [
+      "Medium",
+      "Large"
+    ],
+    "prices": [
+      1000,
+      1500
+    ],
+    "step": 50,
+    "min": 50,
+    "unit": "pcs",
+    "icon": "shoppingbag",
+    "image": "images/shopping-bag.png"
+  },
+  {
+    "id": "shopbrown",
+    "name": "Shopping Bag (Brown)",
+    "badge": "new",
+    "cat": "shopping",
+    "desc": "Branded brown kraft paper shopping bag with handles.",
+    "sizes": [
+      "Medium",
+      "Large"
+    ],
+    "prices": [
+      350,
+      600
+    ],
+    "step": 50,
+    "min": 50,
+    "unit": "pcs",
+    "icon": "shoppingbag",
+    "image": "images/shopping-bag-brown.png"
+  },
+  {
+    "id": "cake",
+    "name": "Cake Box",
+    "badge": "popular",
+    "cat": "cake",
+    "desc": "Food-grade cake box - sturdy & elegant. Includes burger box option.",
+    "sizes": [
+      "5x5",
+      "8x8",
+      "10x10",
+      "12x12",
+      "14x14"
+    ],
+    "prices": [
+      320,
+      535,
+      700,
+      750,
+      750
+    ],
+    "step": 50,
+    "min": 50,
+    "unit": "pcs",
+    "icon": "cake",
+    "image": "images/cake-box.png"
+  },
+  {
+    "id": "burger",
+    "name": "Burger Box",
+    "badge": "new",
+    "cat": "burger",
+    "desc": "Food-grade burger box - compact & sturdy. Price per 100 pcs.",
+    "sizes": [
+      "5x5",
+      "5x7"
+    ],
+    "prices": [
+      320,
+      430
+    ],
+    "step": 100,
+    "min": 100,
+    "unit": "pcs",
+    "icon": "cake",
+    "image": "images/burger-box.png"
+  },
+  {
+    "id": "pizza",
+    "name": "Pizza Box",
+    "badge": "new",
+    "cat": "pizza",
+    "desc": "Corrugated pizza box - grease resistant & stackable.",
+    "sizes": [
+      "Small",
+      "Medium",
+      "Large",
+      "Extra Large"
+    ],
+    "prices": [
+      600,
+      800,
+      900,
+      1000
+    ],
+    "step": 50,
+    "min": 50,
+    "unit": "pcs",
+    "icon": "pizza",
+    "image": "images/pizza-box.png"
+  }
+]

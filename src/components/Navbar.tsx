@@ -1,9 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import type { MouseEvent } from "react";
 
 const links = ["Projects", "Services", "Testimonials", "Contact", "Shop"];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const logoClicksRef = useRef(0);
+  const lastLogoClickRef = useRef(0);
+
+  const onLogoClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const now = Date.now();
+
+    if (now - lastLogoClickRef.current > 2000) {
+      logoClicksRef.current = 0;
+    }
+
+    logoClicksRef.current += 1;
+    lastLogoClickRef.current = now;
+
+    if (logoClicksRef.current >= 5) {
+      logoClicksRef.current = 0;
+      window.location.href = "/admin/login";
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-bg-dark/80 backdrop-blur-md border-b border-white/5">
@@ -38,7 +58,12 @@ export default function Navbar() {
               )}
             </svg>
           </button>
-          <a href="#" className="inline-flex items-center" aria-label="Ambassadors home">
+          <a
+            href="#"
+            className="inline-flex items-center"
+            aria-label="Ambassadors home"
+            onClick={onLogoClick}
+          >
             <img src="/logos/amb-logo1.png" alt="Ambassadors logo" className="h-8 w-auto" />
           </a>
         </div>
