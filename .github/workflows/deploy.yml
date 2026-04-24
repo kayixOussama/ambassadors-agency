@@ -28,26 +28,69 @@ jobs:
         run: |
           zip -r deploy.zip \
             dist/ \
+            data/ \
             server.js \
             package.json \
             package-lock.json \
             Procfile \
             .ebextensions/
 
-      - name: Deploy to Elastic Beanstalk
-        uses: einaregilsson/beanstalk-deploy@v22
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: ambassodors-agency
-          environment_name: ambassodors-agency-env
-          region: eu-north-1
-          version_label: ${{ github.sha }}
-          deployment_package: deploy.zip
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      - name: Upload bundle to S3
+        run: |
+          BUCKET=$(aws elasticbeanstalk create-storage-location --query S3Bucket --output text)
+          KEY="ambassodors-agency/${{ github.sha }}.zip"
+          aws s3 cp deploy.zip "s3://$BUCKET/$KEY"
+          echo "BUCKET=$BUCKET" >> $GITHUB_ENV
+          echo "KEY=$KEY" >> $GITHUB_ENV
+
+      - name: Create application version
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name ambassodors-agency \
+            --version-label "${{ github.sha }}" \
+            --source-bundle S3Bucket="$BUCKET",S3Key="$KEY"
+
+      - name: Update environment with version and env vars
+        run: |
+          aws elasticbeanstalk update-environment \
+            --environment-name Ambassodors-agency-env \
+            --version-label "${{ github.sha }}" \
+            --option-settings \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=JWT_SECRET,Value="${{ secrets.JWT_SECRET }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=ADMIN_USERNAME,Value="${{ secrets.ADMIN_USERNAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=ADMIN_PASSWORD,Value="${{ secrets.ADMIN_PASSWORD }}"
+
+      - name: Wait for deployment to complete
+        run: |
+          for i in $(seq 1 20); do
+            STATUS=$(aws elasticbeanstalk describe-environments \
+              --application-name ambassodors-agency \
+              --environment-names Ambassodors-agency-env \
+              --query "Environments[0].Status" --output text)
+            HEALTH=$(aws elasticbeanstalk describe-environments \
+              --application-name ambassodors-agency \
+              --environment-names Ambassodors-agency-env \
+              --query "Environments[0].Health" --output text)
+            echo "[$i] Status=$STATUS Health=$HEALTH"
+            if [ "$STATUS" = "Ready" ]; then
+              if [ "$HEALTH" != "Green" ]; then
+                echo "Deployment finished but health is $HEALTH — failing."
+                exit 1
+              fi
+              echo "Deployment succeeded."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "Timed out waiting for deployment."
+          exit 1
 
       - name: Invalidate CloudFront cache
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: eu-north-1
-        run: aws cloudfront create-invalidation --distribution-id E3TW79TH7UE02W --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id E3PDVGAQENVOK1 --paths "/*"
