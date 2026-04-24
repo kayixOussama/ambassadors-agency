@@ -15,7 +15,7 @@ export default function Hero() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary-light border border-primary/20">
-          Premium Branding &amp; Printing
+          #1 Branding &amp; Printing Agency in Kigali, Rwanda
         </span>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">
@@ -25,8 +25,9 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
+          Kigali&apos;s leading branding, logo design, packaging, and printing agency.
           From concept to print, we craft identities that captivate audiences
-          and elevate businesses. Premium quality. Unforgettable results.
+          and elevate businesses across Rwanda and East Africa.
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -22,9 +22,11 @@ export default function About() {
             <span className="text-primary-light">We Build Brands.</span>
           </h2>
           <p className="mt-6 text-text-muted leading-relaxed">
-            We are a team of passionate designers and print specialists dedicated
+            Based in <strong className="text-white">Kigali, Rwanda</strong>, we
+            are a team of passionate designers and print specialists dedicated
             to turning your vision into reality. Every project we touch is
-            infused with creativity, strategy, and pixel-perfect execution.
+            infused with creativity, strategy, and pixel-perfect execution —
+            proudly serving businesses across <strong className="text-white">Rwanda and East Africa</strong>.
           </p>
 
           <ul className="mt-8 space-y-4">
