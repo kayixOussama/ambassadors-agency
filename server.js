@@ -117,6 +117,15 @@ app.put("/api/admin/products", requireAdmin, async (req, res) => {
   }
 });
 
+// Block sensitive file/path access
+const BLOCKED_PATHS = /^\/(\.(env|git|ssh|aws|htaccess|DS_Store)|wp-admin|wp-login|phpmyadmin|terraform|backend|app-config\.json|env\.json|runtime-config\.js|env\.js)/i;
+app.use((req, res, next) => {
+  if (BLOCKED_PATHS.test(req.path)) {
+    return res.status(404).end();
+  }
+  return next();
+});
+
 // Cache static assets (JS, CSS, images) for 1 year
 app.use(
   express.static(distDir, {
