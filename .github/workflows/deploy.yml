@@ -40,12 +40,12 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+          aws-region: us-east-1
 
       - name: Upload bundle to S3
         run: |
           BUCKET=$(aws elasticbeanstalk create-storage-location --query S3Bucket --output text)
-          KEY="ambassodors-agency/${{ github.sha }}.zip"
+          KEY="ambassadors-agency/${{ github.sha }}.zip"
           aws s3 cp deploy.zip "s3://$BUCKET/$KEY"
           echo "BUCKET=$BUCKET" >> $GITHUB_ENV
           echo "KEY=$KEY" >> $GITHUB_ENV
@@ -53,14 +53,14 @@ jobs:
       - name: Create application version
         run: |
           aws elasticbeanstalk create-application-version \
-            --application-name ambassodors-agency \
+            --application-name ambassadors-agency \
             --version-label "${{ github.sha }}" \
             --source-bundle S3Bucket="$BUCKET",S3Key="$KEY"
 
       - name: Update environment with version and env vars
         run: |
           aws elasticbeanstalk update-environment \
-            --environment-name Ambassodors-agency-env \
+            --environment-name ambassadors-agency-prod \
             --version-label "${{ github.sha }}" \
             --option-settings \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=JWT_SECRET,Value="${{ secrets.JWT_SECRET }}" \
@@ -71,12 +71,12 @@ jobs:
         run: |
           for i in $(seq 1 20); do
             STATUS=$(aws elasticbeanstalk describe-environments \
-              --application-name ambassodors-agency \
-              --environment-names Ambassodors-agency-env \
+              --application-name ambassadors-agency \
+              --environment-names ambassadors-agency-prod \
               --query "Environments[0].Status" --output text)
             HEALTH=$(aws elasticbeanstalk describe-environments \
-              --application-name ambassodors-agency \
-              --environment-names Ambassodors-agency-env \
+              --application-name ambassadors-agency \
+              --environment-names ambassadors-agency-prod \
               --query "Environments[0].Health" --output text)
             echo "[$i] Status=$STATUS Health=$HEALTH"
             if [ "$STATUS" = "Ready" ]; then
