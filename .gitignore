@@ -15,6 +15,7 @@ dist-ssr
 .env.*
 !.env.example
 deploy.zip
+deploy-eb.zip
 
 # Editor directories and files
 .vscode/*
