@@ -26,26 +26,37 @@ jobs:
 
       - name: Create deployment package
         run: |
-          zip -r deploy.zip \
-            dist/ \
-            data/ \
-            server.js \
-            package.json \
-            package-lock.json \
-            Procfile \
-            .ebextensions/
+          python3 - <<'EOF'
+          import zipfile, os
+
+          files_to_add = [
+            'server.js', 'package.json', 'package-lock.json', 'Procfile'
+          ]
+          dirs_to_add = ['dist', 'data', '.ebextensions']
+
+          with zipfile.ZipFile('deploy.zip', 'w', zipfile.ZIP_DEFLATED) as zf:
+            for f in files_to_add:
+              if os.path.exists(f):
+                zf.write(f, f)
+            for d in dirs_to_add:
+              for root, dirs, files in os.walk(d):
+                for file in files:
+                  path = os.path.join(root, file)
+                  arcname = path.replace(os.sep, '/')
+                  zf.write(path, arcname)
+          EOF
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: eu-north-1
 
       - name: Upload bundle to S3
         run: |
           BUCKET=$(aws elasticbeanstalk create-storage-location --query S3Bucket --output text)
-          KEY="ambassadors-agency/${{ github.sha }}.zip"
+          KEY="ambassodors-agency/${{ github.sha }}.zip"
           aws s3 cp deploy.zip "s3://$BUCKET/$KEY"
           echo "BUCKET=$BUCKET" >> $GITHUB_ENV
           echo "KEY=$KEY" >> $GITHUB_ENV
@@ -53,14 +64,14 @@ jobs:
       - name: Create application version
         run: |
           aws elasticbeanstalk create-application-version \
-            --application-name ambassadors-agency \
+            --application-name ambassodors-agency \
             --version-label "${{ github.sha }}" \
             --source-bundle S3Bucket="$BUCKET",S3Key="$KEY"
 
       - name: Update environment with version and env vars
         run: |
           aws elasticbeanstalk update-environment \
-            --environment-name ambassadors-agency-prod \
+            --environment-name Ambassodors-agency-env \
             --version-label "${{ github.sha }}" \
             --option-settings \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=JWT_SECRET,Value="${{ secrets.JWT_SECRET }}" \
@@ -71,12 +82,12 @@ jobs:
         run: |
           for i in $(seq 1 20); do
             STATUS=$(aws elasticbeanstalk describe-environments \
-              --application-name ambassadors-agency \
-              --environment-names ambassadors-agency-prod \
+              --application-name ambassodors-agency \
+              --environment-names Ambassodors-agency-env \
               --query "Environments[0].Status" --output text)
             HEALTH=$(aws elasticbeanstalk describe-environments \
-              --application-name ambassadors-agency \
-              --environment-names ambassadors-agency-prod \
+              --application-name ambassodors-agency \
+              --environment-names Ambassodors-agency-env \
               --query "Environments[0].Health" --output text)
             echo "[$i] Status=$STATUS Health=$HEALTH"
             if [ "$STATUS" = "Ready" ]; then
