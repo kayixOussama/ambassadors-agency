@@ -1,7 +1,7 @@
 const projects = [
-  { title: "Iwemart", tag: "NEW", color: "bg-primary", image: "/thumb-Iwemart-brand.jpg" },
-  { title: "Oconnecta", tag: null, color: "bg-primary-light/20", image: "/thumb-oconnecta-brand.png" },
-  { title: "Oconnecta", tag: "REBRANDED", color: "bg-primary/60", image: null },
+  { title: "Iwemart", tag: "NEW", color: "bg-primary", image: "/images/works/iwemart-logo.png" },
+  { title: "THE Ambassadors", tag: "NEW", color: "bg-primary-light/20", image: "/images/works/ambassadors-logo.png" },
+  { title: "Oconnecta", tag: "REBRANDED", color: "bg-primary/60", image: "/images/works/occonecta-logo.png" },
 ];
 
 // Duplicate for seamless infinite loop
