@@ -5,7 +5,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$EnvironmentName,
 
-    [string]$Region = "us-east-1",
+    [string]$Region = "eu-north-1",
     [string]$VersionLabel = "",
     [string]$JwtSecret = "",
     [string]$AdminUsername = "",
